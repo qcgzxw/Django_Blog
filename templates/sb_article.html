@@ -1,0 +1,29 @@
+{% load blog_tags %}
+<!-- widget-article start -->
+<div class="aside-widget widget-article">
+	<header>
+		<h3>热门文章</h3>
+	</header>
+	<div class="body">
+		<ul class="clean-list">
+        {% get_article_list 'views' 3 as article_hot %}
+        {% for article in article_hot %}
+            <li><a href=" {% url 'blog:article' id=article.id %}" title="{{ article.title }}">{{ article.title }}</a></li>
+        {% endfor %}
+    </ul>
+	</div>
+</div>
+<div class="aside-widget">
+	<header>
+		<h3>最受欢迎文章</h3>
+	</header>
+	<div class="body">
+		<ul class="clean-list">
+        {% get_article_list 'views' 3 as article_like %}
+        {% for article in article_like %}
+            <li><a href=" {% url 'blog:article' id=article.id %}" title="{{ article.title }}">{{ article.title }}</a></li>
+        {% endfor %}
+    </ul>
+	</div>
+</div>
+<!-- widget-article end -->

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static comments_tags blog_tags%}
+
+{% block title %}{{ article.title }} - {{ SITE_TITLE }}{% endblock %}
+{% block description %}{{ article.description }}{% endblock %}
+{% block keywords %}{{ SITE_KEYWORDS }}{% endblock %}
+{% block itemprop %}{{ article.thumb }}{% endblock %}
+
+
+
+{% block breadcrumb %}{% endblock %}
+{% block article %}
+<link rel="stylesheet" href="{% static "css/github.css" %}">
+<article class="blog-post markdown-body">
+    <header>
+       
+        <div class="lead-image">
+            <img src="{{ article.thumb }}" alt="" class="img-responsive">
+        </div>
+    </header>
+    <div class="body">
+        <h1>{{ article.title }}</h1>
+        <div class="meta">
+            <i class="fa fa-user"></i> {{ article.author }} 
+            <i class="fa fa-calendar"></i>{{ article.date_publish }}
+            <i class="fa fa-comments"></i><span class="data"><a href="#comments">{% get_comment_count article %}</a></span>
+        </div>
+        {{ article.body|safe }}
+    </div>
+</article>
+<aside class="social-icons clearfix">
+    <h3>Share on </h3> 
+    <a href="#"><i class="fa fa-qq"></i></a>
+    <a href="#"><i class="fa fa-weibo"></i></a> 
+    <a href="#"><i class="fa fa-wechat"></i></a>
+    <a href="#"><i class="fa fa-twitter"></i></a>
+</aside>
+<aside class="comments" id="comments">
+<hr>
+<h2><i class="fa fa-comments"></i> {% get_comment_count article %} Comments</h2>
+{% include "comments.html" %}
+{% include "comment_form.html" %}
+
+{% endblock %}
+{% block before_sidebar %}
+<!-- widget-toc start -->
+<div class="aside-widget widget-toc">
+    <header>
+        <h3>文章目录</h3>
+    </header>
+
+        {{ article.toc|safe }}
+
+</div>
+<!-- widget-toc end -->
+{% endblock %}

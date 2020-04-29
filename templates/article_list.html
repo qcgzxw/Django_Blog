@@ -1,0 +1,20 @@
+{% load blog_tags comments_tags %}
+{% get_article_list as article_list %}
+{% paginate article_list 4 %}
+{% for article in article_list %}
+<article class=" blog-teaser">
+<header>
+	<img src="{{ article.thumb }}" alt="{{ article.title }}">
+	<h3><a href="{% url 'blog:article' id=article.id %}">{{ article.title }}</a></h3>
+	<span class="meta">{{ article.date_publish }}, {{ article.author }}，{{ article.views }}次阅读，{% get_comment_count article %}评论</span>
+	<hr>
+</header>
+<div class="body">
+	{{ article.description }}
+</div>
+<div class="clearfix">
+	<a href="{% url 'blog:article' id=article.id %}" class="btn btn-clean-one">Read more</a>
+</div>
+</article>
+{% endfor %}
+{% include "pagination.html" %}

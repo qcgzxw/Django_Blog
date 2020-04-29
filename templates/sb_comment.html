@@ -1,0 +1,16 @@
+{% load comments_tags %}
+<!-- widget-comment start -->
+<div class="aside-widget widget-comment">
+	<header>
+		<h3>最新评论</h3>
+	</header>
+	<div class="body">
+		<ul class="clean-list">
+			{% get_comment_list as comment_list %}
+			{% for comment in comment_list %}
+				<li><a href=" {% url 'blog:article' id=comment.article.id %}#comments" title="{{ comment.title }}">{{ comment.content }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+<!-- widget-comment end -->

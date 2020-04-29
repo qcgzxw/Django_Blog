@@ -1,0 +1,15 @@
+﻿{% extends "base_no_sidebar.html" %}
+{% block title %}关于博客 - {{ SITE_TITLE }}{% endblock %}
+{% block breadcrumb %}关于博客{% endblock %}
+{% block main %}
+<div class="container about">
+    <h1>小文博客——基于<span class="about-bold">  Django </span>的个人博客</h1>
+    <p>为学习和深入了解Python开源框架Django，建立此博客，同时也会更新一些Django相关的教程</p>
+    <p>如果有BUG或者其他建议，可以网站底部的联系方式联系我们。</p>
+
+    <div class="about-button">
+        <a class="btn btn-xlarge btn-clean-one" href="{% url 'blog:contact' %}">Contact Me</a>
+    </div>
+    <hr>
+</div>    
+{% endblock %}

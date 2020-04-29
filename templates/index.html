@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+{{ SITE_TITLE }} - {{ SITE_SUBTITLE }}
+{% endblock %}
+{% block description %}{{ SITE_DESCRIPTION }}{% endblock %}
+{% block keywords %}{{ SITE_KEYWORDS }}{% endblock %}
+{% block itemprop %}{{ SITE_LOGO }}{% endblock %}
+
+
+{% block article_list %}
+{% include "article_list.html" %}
+{% endblock %}

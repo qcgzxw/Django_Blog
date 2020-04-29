@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+
+{% block title %}{{ SITE_TITLE }} - {{ SITE_SUBTITLE }}{% endblock %}
+{% block description %}{{ article.description }}{% endblock %}
+{% block keywords %}{{ SITE_KEYWORDS }}{% endblock %}
+{% block itemprop %}{{ SITE_LOGO }}{% endblock %}
+
+{% block breadcrumb %}
+: 标签 “{{tag_name}}” 下共有 {{article_count}} 篇文章
+{% endblock %}
+{% block article_list %}
+{% if article_count is 0 %}
+    <p>该标签下没有文章。</p>
+{% endif %}
+{% load blog_tags comments_tags %}
+{% paginate article_list 4 %}
+{% for article in article_list %}
+<article class=" blog-teaser">
+<header>
+    <img src="{{ article.thumb }}" alt="{{ article.title }}">
+    <h3><a href="{% url 'blog:article' id=article.id %}">{{ article.title }}</a></h3>
+    <span class="meta">{{ article.date_publish }}, {{ article.author }}</span>
+    <hr>
+</header>
+<div class="body">
+    {{ article.description }}
+</div>
+<div class="clearfix">
+    <a href="{% url 'blog:article' id=article.id %}" class="btn btn-clean-one">Read more</a>
+</div>
+</article>
+{% endfor %}
+{% include "pagination.html" %}
+{% endblock %}

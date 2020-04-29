@@ -1,0 +1,16 @@
+{% load blog_tags %}
+<!-- widget-category start -->
+<div class="aside-widget widget-category">
+<header>
+	<h3>文章分类</h3>
+</header>
+<div class="body">
+	<ul class="clean-list">
+        {% get_category_list as category_list %}
+        {% for category in category_list %}
+            <li><a href=" {% url 'blog:category' slug=category.slug %}" title="{{ category.name }}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+<!-- widget-category end -->

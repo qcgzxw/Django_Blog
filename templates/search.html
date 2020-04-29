@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+{{ SITE_TITLE }} - {{ SITE_SUBTITLE }}
+{% endblock %}
+{% block description %}{{ SITE_DESCRIPTION }}{% endblock %}
+{% block keywords %}{{ SITE_KEYWORDS }}{% endblock %}
+{% block itemprop %}{{ SITE_LOGO }}{% endblock %}
+{% block breadcrumb %}
+
+: 找到 “{{keyword}}” 相关内容 {{article_count}} 个    
+
+
+{% endblock %}
+{% block article_list %}
+{% if article_count is 0 %}
+    <p>对不起，没有找到匹配结果。</p>
+{% endif %}
+{% load blog_tags comments_tags %}
+{% paginate article_list 4 %}
+{% for article in article_list %}
+<article class=" blog-teaser">
+<header>
+    <img src="{{ article.thumb }}" alt="{{ article.title }}">
+    <h3><a href="{% url 'blog:article' id=article.id %}">{{ article.title }}</a></h3>
+    <span class="meta">{{ article.date_publish }}, {{ article.author }}</span>
+    <hr>
+</header>
+<div class="body">
+    {{ article.description }}
+</div>
+<div class="clearfix">
+    <a href="{% url 'blog:article' id=article.id %}" class="btn btn-clean-one">Read more</a>
+</div>
+</article>
+{% endfor %}
+{% include "pagination.html" %}
+{% endblock %}

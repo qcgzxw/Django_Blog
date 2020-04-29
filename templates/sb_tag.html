@@ -1,0 +1,16 @@
+{% load blog_tags %}
+<!-- widget-tag start-->
+<div class="aside-widget widget-tag">
+	<header>
+		<h3>标签云</h3>
+	</header>
+	<div class="body clearfix">
+		<ul class="tags">
+			{% get_tag_list as tag_list%}
+			{% for tag in tag_list %}
+				<li><a href=" {% url 'blog:tag' id=tag.id %}" title="{{ tag.name }}">{{ tag.name }}</a></li>
+			{% endfor %}                   
+		</ul>
+	</div>
+</div>
+<!-- widget-tag end-->

@@ -1,0 +1,23 @@
+<aside class="create-comment" id="create-comment">
+    <hr>
+    <h2><i class="fa fa-pencil"></i> Add Comment</h2>
+    <form action="{% url 'comments:post_comment' article.id %}" method="post" accept-charset="utf-8">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" name="name" id="comment-name" placeholder="Your Name" class="form-control input-lg">    
+            </div>
+            <div class="col-md-6">
+                <input type="email" name="email" id="comment-email" placeholder="Email" class="form-control input-lg">    
+            </div>
+        </div>
+
+        <input type="url" name="url" id="comment-url" placeholder="Website" class="form-control input-lg">
+
+        <textarea rows="10" name="content" id="comment-body" placeholder="Your Message" class="form-control input-lg"></textarea>
+
+        <div class="buttons clearfix">
+            <button type="submit" class="btn btn-xlarge btn-clean-one">Submit</button>
+        </div>
+    </form>
+</aside>
