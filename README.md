@@ -35,10 +35,10 @@ python manage.py createsuperuser
 ```shell script
 python manage.py runserver
 ```
-打开http://127.0.0.1:8000/查看首页内容
+打开http://127.0.0.1:8000/ 查看首页内容
 
 ### 后台管理
-打开http://127.0.0.1:8000/admin使用你创建的后台管理员账号登录
+打开http://127.0.0.1:8000/admin 使用你创建的后台管理员账号登录
 
 然后插入一些新的字段
 
